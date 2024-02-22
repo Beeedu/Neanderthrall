@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 57445367}
   - component: {fileID: 57445366}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,9 +412,11 @@ GameObject:
   m_Component:
   - component: {fileID: 560864639}
   - component: {fileID: 560864638}
-  - component: {fileID: 560864637}
   - component: {fileID: 560864636}
   - component: {fileID: 560864640}
+  - component: {fileID: 560864637}
+  - component: {fileID: 560864641}
+  - component: {fileID: 560864642}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -480,7 +482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  maxHealth: 100
 --- !u!212 &560864638
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -577,6 +578,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &560864641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560864634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72b1e1f9d760fa479592c00be405eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabAttackHitbox: {fileID: 4301644802013426600, guid: 2f245d63edb823d4b9396f74368e2814, type: 3}
+--- !u!114 &560864642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560864634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a14d7c73e01a04a8260b55afc8a772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabProjectile: {fileID: 1220311072993409349, guid: de886aca35b6d7b4aba65a9abf565d65, type: 3}
+  maxMana: 30
 --- !u!1 &1425678409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da777ec93004ee5488bb14a2bb97b099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfProjectile: {fileID: 1220311072993409349, guid: de886aca35b6d7b4aba65a9abf565d65, type: 3}
+  pfProjectile: {fileID: 0}
 --- !u!1 &2128380514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5c23458fd1af34fa1b3a7abe29ef16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 560864637}
+  player: {fileID: 560864634}
 --- !u!4 &2128380516
 Transform:
   m_ObjectHideFlags: 0

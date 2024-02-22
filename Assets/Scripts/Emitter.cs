@@ -6,38 +6,23 @@ using static GameManager;
 public class Emitter : MonoBehaviour
 {
     [SerializeField]
-    Transform pfProjectile; 
+    Transform pfProjectile;
 
     // Start is called before the first frame update
     void Start()
     {
-        ActionTimer.Create(EmitProjectile, 1f);
+        //ActionTimer.Create(() => Emit(this.pfProjectile), 1f);
     }
 
-    public void EmitProjectile()
+    public void Emit(Transform prefab)
     {
-        GameObject player = this.transform.parent.gameObject;
-        Transform projectileTransform = Instantiate(this.pfProjectile, this.transform.position, Quaternion.identity);
+        Transform projectileTransform = Instantiate(prefab, this.transform.position, Quaternion.identity);
 
-        Vector3 aimDirection;
-        AimMode aimMode = GameManager.instance.GetAimMode();
-        switch (aimMode)
-        {
-            case AimMode.Manual:
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                aimDirection = (new Vector3(mousePosition.x, mousePosition.y) - player.transform.position).normalized;
-                break;
-            case AimMode.Auto:
-                // TODO: Implement Auto Aim
-                aimDirection = new Vector3(0, 0, 0);
-                break;
-            default:
-                aimDirection = new Vector3(0, 0, 0);
-                break;
-        }
+        Vector3 aimDirection = GameManager.instance.GetPlayerAim().DetermineAimDirection(GameManager.instance.GetAimMode());
 
         projectileTransform.GetComponent<Projectile>().Setup(aimDirection);
 
         SoundManager.instance.PlayThrowSound();
     }
+
 }

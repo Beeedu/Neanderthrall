@@ -55,9 +55,7 @@ public class Director : MonoBehaviour
     private int CalculateQuota()
     {
         float time = GameManager.instance.GetClockTime();
-        Debug.Log("Power: " + Mathf.Pow(time, 1.5f));
         float quota = (1f / 50f) * Mathf.Pow(time, 1.5f) + 5;
-        Debug.Log("Quota: " + quota);
         return Mathf.RoundToInt(quota);
     }
 

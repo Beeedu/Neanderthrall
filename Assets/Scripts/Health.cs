@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : IHealth
+public class Health : MonoBehaviour
 {
     [SerializeField]
-    float maxHealth;
+    private float maxHealth;
 
-    [SerializeField]
-    float currentHealth;
+    private float currentHealth;
 
-    public Health(float maxHealth)
+    private void Start()
     {
-        this.maxHealth = maxHealth;
-        this.currentHealth = maxHealth;
+        this.currentHealth = this.maxHealth;
     }
 
     public float MaxHealth
@@ -33,21 +31,12 @@ public class Health : IHealth
         this.currentHealth += amount;
         return this.currentHealth;
     }
-}
 
-public interface IHealth
-{
-    float MaxHealth
+    void Update()
     {
-        get;
-        set;
+        if (this.CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
-
-    float CurrentHealth
-    {
-        get;
-        set;
-    }
-
-    public float ChangeHealth(float amount);
 }

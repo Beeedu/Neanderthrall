@@ -5,20 +5,18 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    float speed = 15f;
+    private float speed = 15f;
 
-    private float damage = 50;
+    //[SerializeField]
+    //private int piercing = 5;
+
+    //private int piercedCount = 0;
+
+    private float damage = 100f;
+    private float range = 20f;
 
     private Vector3 direction;
     private Vector3 startPosition;
-    private float range = 20f;
-    private int piercing = 0;
-    private int piercedCount = 0;
-
-    private void Start()
-    {
-
-    }
 
     public void Setup(Vector3 direction)
     {
@@ -38,18 +36,18 @@ public class Projectile : MonoBehaviour
         this.transform.position += Time.deltaTime * this.speed * this.direction;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            piercedCount++;
-        }
+    //void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        piercedCount++;
+    //    }
 
-        if (piercedCount > piercing)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //    if (piercedCount > piercing)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     public float GetDamage()
     {

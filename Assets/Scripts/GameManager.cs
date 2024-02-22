@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField]
-    private Player player;
+    private GameObject player;
+
+    private PlayerAim playerAim = new PlayerAim();
 
     private float clockTimer = 0f;
 
@@ -52,15 +54,20 @@ public class GameManager : MonoBehaviour
     public AimMode GetAimMode()
     {
         return this.aimMode;
-    } 
+    }
+
+    public PlayerAim GetPlayerAim()
+    {
+        return this.playerAim;
+    }
+
+    public GameObject GetPlayer()
+    {
+        return this.player;
+    }
 
     public float GetClockTime()
     {
         return this.clockTimer;
-    }
-
-    public Player GetPlayer()
-    {
-        return this.player;
     }
 }
