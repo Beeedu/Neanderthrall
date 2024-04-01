@@ -8,6 +8,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float speed = 1.5f;
 
+    [SerializeField]
+    private float attackRange = 10f;
+
     private Rigidbody2D enemyRigidbody;
 
     private void Awake()
@@ -18,15 +21,14 @@ public class EnemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         GameObject player = GameManager.instance.GetPlayer();
-        Vector3 toPLayer = FindDirectionToObject(player);
-        this.enemyRigidbody.velocity = this.speed * toPLayer;
-    }
+        Vector3 toPLayer = Util.FindDistanceToObject(this.gameObject, player);
 
-    private Vector3 FindDirectionToObject(GameObject other)
-    {
-        Vector3 thisPosition = this.transform.position;
-        Vector3 otherPosition = other.transform.position;
-        Vector3 toOther = new Vector2(otherPosition.x - thisPosition.x, otherPosition.y - thisPosition.y).normalized;
-        return toOther;
+        if (toPLayer.magnitude < attackRange)
+        {
+            this.enemyRigidbody.velocity = new Vector2();
+            return;
+        }
+
+        this.enemyRigidbody.velocity = this.speed * toPLayer.normalized;
     }
 }

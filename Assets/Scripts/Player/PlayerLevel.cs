@@ -10,21 +10,14 @@ public class PlayerLevel : MonoBehaviour
 
     private int level = 1;
 
-    private int[] levelExpBreakpoints = { 10, 15, 20, 30, 40, 60, 80, 120, 160, 240, 320 };
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        int breakpoint = this.levelExpBreakpoints[level - 1];
+        int breakpoint = CalculateNextLevelBreakpoint(this.level);
         if (this.experience >= breakpoint)
         {
             this.level++;
+            experience = 0f;
         }
     }
 
@@ -34,5 +27,27 @@ public class PlayerLevel : MonoBehaviour
         {
             this.experience += ExpGain;
         }
+    }
+
+    private int CalculateNextLevelBreakpoint(int level)
+    {
+        // F(x) = 4(x - 1)^2 + 10
+        // 10, 14, 26, 46, 74, ...
+        return 4 * Mathf.RoundToInt(Mathf.Pow(level - 1, 2)) + 10;
+    }
+
+    public int GetPlayerLevel()
+    {
+        return this.level;
+    }
+
+    public float GetPlayerExp()
+    {
+        return this.experience;
+    }
+
+    public float GetPlayerExpBreakpoint()
+    {
+        return CalculateNextLevelBreakpoint(this.level);
     }
 }

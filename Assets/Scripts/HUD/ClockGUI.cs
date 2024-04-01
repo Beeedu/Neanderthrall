@@ -22,8 +22,8 @@ public class ClockGUI : MonoBehaviour
 
     private string FormatClockTime(float time)
     {
-        int minutes = Mathf.RoundToInt(time / 60);
-        int seconds = Mathf.RoundToInt(time % 60);
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
 
         return $"{FormatLeadingZero(minutes)}:{FormatLeadingZero(seconds)}";
     }

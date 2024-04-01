@@ -8,9 +8,9 @@ public class FirstAttackHitTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!hasHit && collision.gameObject.CompareTag("Enemy"))
+        if (!hasHit && collision.gameObject.CompareTag("Enemy") && TryGetComponent(out Attack attack))
         {
-            EventManager.instance.OnAttackFirstHit();
+            EventManager.instance.OnAttackFirstHit(attack.GetAttackerID());
             hasHit = true;
         }
     }

@@ -14,4 +14,12 @@ public static class Util
         }
         return n;
     }
+
+    public static Vector3 FindDistanceToObject(GameObject origin, GameObject other)
+    {
+        Vector3 originPosition = origin.transform.position;
+        Vector3 otherPosition = other.transform.position;
+        Vector3 toOther = new Vector2(otherPosition.x - originPosition.x, otherPosition.y - originPosition.y);
+        return toOther;
+    }
 }

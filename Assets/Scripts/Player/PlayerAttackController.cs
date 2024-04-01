@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttackController : MonoBehaviour
 {
     [SerializeField]
-    Transform prefabAttackHitbox;
+    Attack prefabAttackHitbox;
 
     private float damage = 50f;
 
@@ -17,10 +17,8 @@ public class PlayerAttack : MonoBehaviour
     {
         Vector3 direction = GameManager.instance.GetPlayerAim().DetermineAimDirection(GameManager.instance.GetAimMode());
 
-        Transform attackHitbox = Instantiate(this.prefabAttackHitbox, this.transform.position + (direction), Quaternion.identity, this.transform.parent);
+        Transform attackHitbox = Instantiate(this.prefabAttackHitbox.transform, this.transform.position + (direction), Quaternion.identity);
 
-        attackHitbox.transform.parent = this.transform;
-
-        attackHitbox.GetComponent<Attack>().Setup(direction, damage);
+        attackHitbox.GetComponent<Attack>().Setup(direction, damage, this.gameObject);
     }
 }

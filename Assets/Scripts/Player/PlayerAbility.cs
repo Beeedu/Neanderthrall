@@ -34,11 +34,24 @@ public class PlayerAbility : MonoBehaviour
 
         Vector3 aimDirection = GameManager.instance.GetPlayerAim().DetermineAimDirection(GameManager.instance.GetAimMode());
 
-        projectileTransform.GetComponent<Projectile>().Setup(aimDirection);
+        projectileTransform.GetComponent<Ability>().Setup(aimDirection, this.transform.GetInstanceID());
     }
 
-    private void GainMana()
+    private void GainMana(int attackerId)
     {
-        this.mana += this.manaGain;
+        if (attackerId == this.gameObject.GetInstanceID())
+        {
+            this.mana += this.manaGain;
+        }
+    }
+
+    public float GetMana()
+    {
+        return this.mana;
+    }
+
+    public float GetMaxMana()
+    {
+        return this.maxMana;
     }
 }

@@ -6,9 +6,14 @@ public class EnemyHitTrigger : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Attack"))
+        if (collision.gameObject.CompareTag("Attack") && collision.TryGetComponent(out Attack attack))
         {
-            EventManager.instance.OnEnemyHit(this.transform.gameObject.GetInstanceID(), collision);
+            EventManager.instance.OnEnemyHit(attack.GetAttackerID(), this.transform.gameObject.GetInstanceID(), collision);
+        }
+
+        if (collision.gameObject.CompareTag("Ability") && collision.TryGetComponent(out Ability ability))
+        {
+            EventManager.instance.OnEnemyHit(ability.GetAttackerID(), this.transform.gameObject.GetInstanceID(), collision);
         }
     }
 }

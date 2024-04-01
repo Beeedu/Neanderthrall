@@ -17,9 +17,9 @@ public class EnemyHitController : MonoBehaviour
         EventManager.instance.EnemyHit -= HandleEnemyHit;
     }
 
-    private void HandleEnemyHit(int enemyId, Collider2D collision)
+    private void HandleEnemyHit(int attackerId, int enemyId, Collider2D collision)
     {
-        if (this.transform.gameObject.GetInstanceID() != enemyId)
+        if (this.gameObject.GetInstanceID() != enemyId)
         {
             return;
         }
@@ -30,9 +30,9 @@ public class EnemyHitController : MonoBehaviour
             return;
         }
 
-        if (collision.TryGetComponent(out Projectile projectile))
+        if (collision.TryGetComponent(out Ability ability))
         {
-            this.health.ChangeHealth(-projectile.GetDamage());
+            this.health.ChangeHealth(-ability.GetDamage());
         }
 
         if (collision.TryGetComponent(out Attack attack))

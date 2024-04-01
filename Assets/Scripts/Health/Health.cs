@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
     {
         if (this.CurrentHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

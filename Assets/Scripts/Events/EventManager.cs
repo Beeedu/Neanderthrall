@@ -19,18 +19,18 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action<int, Collider2D> EnemyHit;
+    public event Action<int, int, Collider2D> EnemyHit;
 
-    // TODO: This assumes only one entity is using this event...
-    public event Action AttackFirstHit;
+    // TODO: This assumes only one entity is using this event
+    public event Action<int> AttackFirstHit;
 
-    public void OnEnemyHit(int enemyId, Collider2D collision)
+    public void OnEnemyHit(int attackerId, int enemyId, Collider2D collision)
     {
-        EnemyHit?.Invoke(enemyId, collision);
+        EnemyHit?.Invoke(attackerId, enemyId, collision);
     }
 
-    public void OnAttackFirstHit()
+    public void OnAttackFirstHit(int attackerId)
     {
-        AttackFirstHit?.Invoke();
+        AttackFirstHit?.Invoke(attackerId);
     }
 }

@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - pfThrowSound: {fileID: 3176386228598106063, guid: 1528986a00dc8c843a8b468832fc293b, type: 3}
-  - pfImpactSound: {fileID: 2489268061480895896, guid: 5189287660e27ba439016d403ec50529, type: 3}
+  - pfImpactSound: {fileID: 3663171026718958122, guid: b715fb7a6254d2d4a842db2f13dc29d3, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

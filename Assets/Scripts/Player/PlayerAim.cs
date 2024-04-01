@@ -5,6 +5,8 @@ using static GameManager;
 
 public class PlayerAim
 {
+    private float aimRange = 10f;
+
     private Vector3 lastUsedAimDirection = new Vector3(1, 0);
 
     public PlayerAim() { }
@@ -37,7 +39,7 @@ public class PlayerAim
 
     private Vector3 CalculateAutoAimDirection(Vector3 origin)
     {
-        Transform target = FindClosestTargetInRange(origin);
+        Transform target = FindClosestTargetInRange(origin, this.aimRange);
 
         if (target == null)
         {
@@ -51,14 +53,14 @@ public class PlayerAim
         return aimDirection;
     }
 
-    private Transform FindClosestTargetInRange(Vector3 origin)
+    private Transform FindClosestTargetInRange(Vector3 origin, float range)
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(origin, 10f, new Vector2(0f, 0f));
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range);
 
         Transform target = null;
         float minDistanceSquared = Mathf.Infinity;
 
-        foreach (RaycastHit2D hit in hits)
+        foreach (Collider2D hit in hits)
         {
             if (!hit.transform.CompareTag("Enemy"))
             {
